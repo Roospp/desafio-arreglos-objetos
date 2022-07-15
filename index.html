@@ -11,35 +11,30 @@
 </head>
 
 <body>
-
     <nav>
         <section>
             <div>
-                <p>Cantidad de cuartos:</p> <input id="rooms" value="5" min="0" class="form-control w-50 m-auto" type="number">
+                <p>Cantidad de cuartos:</p> <input id="rooms" min="0" class="form-control w-50 m-auto" type="number">
             </div>
             <div>
                 <span>Metros cuadrados </span>
                 <div class="d-flex">
                     <div class="me-4">
-                        <p>desde: </p><input id="m2min" value="500" min="0" class="form-control " type="number">
+                        <p>desde: </p><input id="m2min" min="0" class="form-control " type="number">
                     </div>
                     <div>
                         <p> hasta:</p>
-                        <input id="m2max" min="0" value="600" class="form-control " type="number">
+                        <input id="m2max" min="0" class="form-control " type="number">
                     </div>
                 </div>
             </div>
         </section>
-
         <button onclick="buscar()" class="btn btn-warning">Buscar</button>
     </nav>
     <section id="Propiedades">
         <h4 class="py-3">Total: <span id="total">0</span></h4>
-        <div id="lista"></div>
-
-
+        <div class="propiedades" id="lista"></div>
     </section>
-
     <script src="assets/js/script.js"></script>
 </body>
 

@@ -49,35 +49,68 @@ const propiedadesJSON = [{
     }
 ];
 
+let content = ""
 
+propiedadesJSON.forEach(p => {
+    content += `
+<div class="propiedad">
+<div><img class="img" src="${p.src}" alt=""></div>
+<section>
+  <h5>${p.name}</h5>
+  <div class="d-flex justify-content-between">
+      <p>Cuartos: ${p.rooms}</p>
+      <p>Metros: ${p.m}</p>
+  </div>
+  <p class="my-3">${p.description}</p>
+  <button class="btn btn-info ">Ver más</button>
+</section>
+</div>
+
+`
+});
+const e = document.getElementById("lista")
+e.innerHTML = content
+
+const t = propiedadesJSON.length
+const dt = document.getElementById("total")
+dt.innerHTML = t
+
+function valido($r, $min, $max) {
+    if ($r < 1 || $min < 1 || $max < 1) {
+        return false
+    }
+    return true
+}
 
 function buscar() {
-    const r = parseInt(document.getElementById("rooms").value)
-    const min = parseInt(document.getElementById("m2min").value)
-    const max = parseInt(document.getElementById("m2max").value)
-    if (r < 1 || min < 1 || max < 1) {
-        alert("Faltan campos por llenar")
-    } else {
+
+    let r = parseInt(document.getElementById("rooms").value)
+    let min = parseInt(document.getElementById("m2min").value)
+    let max = parseInt(document.getElementById("m2max").value)
+    r = isNaN(r) ? 0 : r
+    min = isNaN(min) ? 0 : min
+    max = isNaN(max) ? 0 : max
+    if (valido(r, min, max)) {
         const propiedadesfiltradas = propiedadesJSON.filter(p => p.rooms === r &&
             p.m >= min && p.m <= max)
         let content = ""
 
         propiedadesfiltradas.forEach(p => {
-            content += `<div class="propiedades">
-            <div class="propiedad">
-            <div><img class="img" src="${p.src}" alt=""></div>
-            <section>
-                <h5>${p.name}</h5>
-                <div class="d-flex justify-content-between">
-                    <p>Cuartos: ${p.rooms}</p>
-                    <p>Metros: ${p.m}</p>
-                </div>
-                <p class="my-3">${p.description}</p>
-                <button class="btn btn-info ">Ver más</button>
-            </section>
+            content += `
+        <div class="propiedad">
+        <div><img class="img" src="${p.src}" alt=""></div>
+        <section>
+            <h5>${p.name}</h5>
+            <div class="d-flex justify-content-between">
+                <p>Cuartos: ${p.rooms}</p>
+                <p>Metros: ${p.m}</p>
             </div>
+            <p class="my-3">${p.description}</p>
+            <button class="btn btn-info ">Ver más</button>
+        </section>
+        </div>
 
-            </div>`
+      `
         });
 
         const e = document.getElementById("lista")
@@ -86,11 +119,11 @@ function buscar() {
         const t = propiedadesfiltradas.length
         const dt = document.getElementById("total")
         dt.innerHTML = t
-
+        if (t === 0) {
+            alert("Sin resultado")
+        }
+    } else {
+        alert("Faltan campos por llenar")
     }
-
-
-
-
 
 }

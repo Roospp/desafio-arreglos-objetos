@@ -43,6 +43,7 @@ nav div {
 }
 
 .propiedad .img {
+    margin-top: 10px;
     height: 150px;
     background-size: cover;
     background-position: center;
